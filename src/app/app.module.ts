@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './Products/product-list/product-list.component';
-import { ShellComponent } from './core/shell/shell.component';
-import { HeaderComponent } from './core/shell/header/header.component';
-import { FooterComponent } from './core/shell/footer/footer.component';
+import { ShellComponent } from './core/components/shell/shell.component';
+import { HeaderComponent } from './core/components/shell/header/header.component';
+import { FooterComponent } from './core/components/shell/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +14,10 @@ import { FooterComponent } from './core/shell/footer/footer.component';
     ProductListComponent,
     ShellComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
