@@ -26,6 +26,9 @@
     </div>
   </div>
   <div class="clearfix"></div>
+  <div class="d-flex flex-wrap justify-content-end mt-5">
+    <button class="btn btn-sm btn-primary">Create New</button>
+  </div>
   <div class="d-flex flex-wrap justify-content-center" *ngIf="!listView">
     <div
       *ngFor="let product of products$ | async | filterByName: searchValue"
@@ -43,9 +46,18 @@
       >
         <h2 class="card-title">{{ product.id }}.{{ product.title }}</h2>
         <p class="card-text">{{ product.description | slice: 0:147 }}...</p>
-        <a class="btn btn-primary" (click)="sendProductToModal(product)"
-          >Details</a
-        >
+        <div class="d-flex flex-row">
+          <a
+            class="btn btn-primary btn-sm me-2"
+            (click)="sendProductToModal(product)"
+            >Details</a
+          ><a class="btn btn-success btn-sm me-2" (click)="editProduct(product)"
+            >Edit</a
+          ><a class="btn btn-danger btn-sm" (click)="deleteProduct(product)"
+            >Delete</a
+          >
+        </div>
+
         <br />
         <span>{{ product.quantity }}</span>
         <br />
@@ -77,8 +89,18 @@
           <td>{{ product.price | currency }}</td>
           <td>{{ product.quantity }}</td>
           <td>
-            <a class="btn btn-primary" (click)="sendProductToModal(product)"
+            <a
+              class="btn btn-primary btn-sm me-2"
+              (click)="sendProductToModal(product)"
               >Details</a
+            >
+            <a
+              class="btn btn-success btn-sm me-2"
+              (click)="editProduct(product)"
+              >Edit</a
+            >
+            <a class="btn btn-danger btn-sm" (click)="deleteProduct(product)"
+              >Delete</a
             >
           </td>
         </tr>

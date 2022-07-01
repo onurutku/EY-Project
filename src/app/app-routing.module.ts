@@ -3,9 +3,16 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'products/list',
+    path: 'products',
     loadChildren: () =>
       import('./Products/products.module').then((m) => m.ProductsModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./Administration/administration/administration.module').then(
+        (m) => m.AdministrationModule
+      ),
   },
 ];
 

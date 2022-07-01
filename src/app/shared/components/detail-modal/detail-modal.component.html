@@ -1,0 +1,30 @@
+<div
+  class="d-flex justify-content-center align-items-center backdrop"
+  *ngIf="product"
+>
+  <div class="alert-box">
+    <div class="card">
+      <img
+        class="close-icon"
+        src="../../../../assets/icons/close.png"
+        alt="icon"
+        (click)="closeModal()"
+      />
+      <img
+        src="../../../../assets/card-photos/pp.png"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product?.title }}</h5>
+        <p class="card-text">
+          {{ product?.description }}
+        </p>
+        <span>Qty : {{ product?.quantity }}</span>
+        <br />
+        <br />
+        <h5 class="card-title">{{ product?.price | currency }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
