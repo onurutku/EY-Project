@@ -1,15 +1,15 @@
 export class Product {
   constructor(
-    public id: number,
-    public title: string,
     public description: string,
-    public price: number,
+    public id: number,
     public image: string,
-    public quantity: string
+    public price: number,
+    public quantity: number | string,
+    public title: string
   ) {
-    (this.id = id),
-      (this.title = title),
-      (this.description = description),
+    (this.description = description),
+      (this.id = id),
+      (this.image = image),
       (this.price = price),
       (this.quantity = quantity),
       (this.title = title);

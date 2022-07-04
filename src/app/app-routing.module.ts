@@ -10,7 +10,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () =>
-      import('./Administration/administration/administration.module').then(
+      import('./Administration/administration.module').then(
         (m) => m.AdministrationModule
       ),
   },

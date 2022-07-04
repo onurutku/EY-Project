@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductsModule } from './Products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdministrationModule } from './Administration/administration.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProductsModule,
     SharedModule,
     HttpClientModule,
+    AdministrationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

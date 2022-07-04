@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center align-items-center">
+  <form [formGroup]="newProduct" (submit)="onSubmit()" style="width: 40%">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        aria-describedby="title"
+        formControlName="title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        style="height: 100px"
+        formControlName="description"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="title" class="form-label">Price</label>
+      <input
+        type="number"
+        min="0"
+        step="0.1"
+        class="form-control"
+        id="price"
+        aria-describedby="price"
+        formControlName="price"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity</label>
+      <input
+        type="number"
+        min="0"
+        step="1"
+        class="form-control"
+        id="quantity"
+        aria-describedby="quantity"
+        formControlName="quantity"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="picture" class="form-label">Picture</label>
+      <input
+        type="file"
+        min="0"
+        step="1"
+        class="form-control"
+        id="picture"
+        aria-describedby="picture"
+        formControlName="picture"
+        (change)="onFileChange($event)"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary float-end">Add</button>
+  </form>
+</div>
