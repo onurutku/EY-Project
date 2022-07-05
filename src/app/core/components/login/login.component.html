@@ -13,6 +13,13 @@
         formControlName="email"
       />
     </div>
+    <div
+      *ngIf="loginForm.get('email')?.touched && !loginForm.get('email')?.valid"
+      id="title"
+      class="form-text"
+    >
+      {{ validationMessage }}
+    </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <input
@@ -22,6 +29,21 @@
         formControlName="password"
       />
     </div>
-    <button type="submit" class="btn btn-primary float-end">Submit</button>
+    <div
+      *ngIf="
+        loginForm.get('password')?.touched && !loginForm.get('password')?.valid
+      "
+      id="title"
+      class="form-text"
+    >
+      {{ validationMessage }}
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary float-end"
+      [disabled]="!loginForm.valid"
+    >
+      Submit
+    </button>
   </form>
 </div>

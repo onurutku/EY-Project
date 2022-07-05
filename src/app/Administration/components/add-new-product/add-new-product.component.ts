@@ -5,6 +5,7 @@ import { map, Observable, takeUntil } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { BaseComponent } from 'src/app/shared/components/base-component/base.component';
 import { Product } from 'src/app/shared/models/product.model';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,6 +18,7 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
   newProduct!: FormGroup;
   editMode = false;
   editId!: string;
+  validationMessage = environment.validationMessage;
   constructor(
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -33,7 +35,7 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       description: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
-      image: ['', Validators.required],
+      image: [''],
     });
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
