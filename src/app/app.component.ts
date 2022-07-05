@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
   title = 'my-first-app';
   constructor(private auth: AuthService) {}
   ngOnInit(): void {
-    this.auth.autoLogin();
+    if (localStorage.getItem('user')) this.auth.autoLogin();
   }
 }

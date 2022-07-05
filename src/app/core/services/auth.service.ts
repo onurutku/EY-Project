@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, map } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   userLoggedIn = new BehaviorSubject<User | null>(null);
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   login(userLoggedIn: any) {
     return this.http.get(`${environment.baseUrl}users`).pipe(
       map((data: any) => {
@@ -40,6 +41,7 @@ export class AuthService {
                 JSON.stringify(responseForInterceptor)
               );
               this.userLoggedIn.next(responseForInterceptor);
+              this.autoLogout();
             } else {
               throw new Error();
             }
@@ -52,18 +54,23 @@ export class AuthService {
   logout() {
     this.userLoggedIn.next(null);
     localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
   autoLogin() {
     const fromLocalStorage = JSON.parse(localStorage.getItem('user') || '{}');
-    if (fromLocalStorage) {
-      const userAutoLoggedIn = {
-        email: fromLocalStorage.email,
-        _token: fromLocalStorage._token,
-        _expirationDate: +new Date() + 600000,
-      };
-      this.userLoggedIn.next(userAutoLoggedIn);
-      localStorage.removeItem('user');
-      localStorage.setItem('user', JSON.stringify(userAutoLoggedIn));
-    }
+    const userAutoLoggedIn = {
+      email: fromLocalStorage.email,
+      _token: fromLocalStorage._token,
+      _expirationDate: +new Date() + 600000,
+    };
+    this.userLoggedIn.next(userAutoLoggedIn);
+    localStorage.removeItem('user');
+    localStorage.setItem('user', JSON.stringify(userAutoLoggedIn));
+    this.autoLogout();
+  }
+  autoLogout() {
+    setTimeout(() => {
+      this.logout();
+    }, 600000);
   }
 }
