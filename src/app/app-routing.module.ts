@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './core/components/login/login.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   {
     path: 'products',
     loadChildren: () =>
@@ -14,6 +17,7 @@ const routes: Routes = [
         (m) => m.AdministrationModule
       ),
   },
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

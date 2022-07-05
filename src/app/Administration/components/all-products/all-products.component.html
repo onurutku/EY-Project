@@ -11,7 +11,7 @@
       </button>
       <span class="input-group-text" id="search"
         ><img
-          src="../../../assets/icons/search.png"
+          src="assets/icons/search.png"
           style="width: 20px; height: auto"
           alt=""
       /></span>
@@ -38,7 +38,7 @@
       style="width: 26.5rem"
     >
       <img
-        src="../../../assets/card-photos/pp.png"
+        src="assets/card-photos/pp.png"
         class="card-img-top"
         alt="product-image"
         style="width: 100%; height: auto"
@@ -53,7 +53,9 @@
             class="btn btn-primary btn-sm me-2"
             (click)="sendProductToModal(product)"
             >Details</a
-          ><a class="btn btn-success btn-sm me-2" (click)="editProduct(product)"
+          ><a
+            class="btn btn-success btn-sm me-2"
+            [routerLink]="['edit', product.id]"
             >Edit</a
           ><a class="btn btn-danger btn-sm" (click)="deleteProduct(product)"
             >Delete</a
@@ -85,7 +87,9 @@
           *ngFor="let product of products$ | async | filterByName: searchValue"
         >
           <th scope="row">{{ product.id }}</th>
-          <td><img src="{{ product.image }}" style="width: 30px" alt="" /></td>
+          <td>
+            <img src="{{ product.image }}" style="width: 30px" alt="" />
+          </td>
           <td>{{ product.title }}</td>
           <td>{{ product.description | slice: 0:110 }}...</td>
           <td>{{ product.price | currency }}</td>
@@ -98,7 +102,7 @@
             >
             <a
               class="btn btn-success btn-sm me-2"
-              (click)="editProduct(product)"
+              [routerLink]="['edit', product.id]"
               >Edit</a
             >
             <a class="btn btn-danger btn-sm" (click)="deleteProduct(product)"

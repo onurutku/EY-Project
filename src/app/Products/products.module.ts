@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
       {
         path: 'list',
         component: ProductListComponent,

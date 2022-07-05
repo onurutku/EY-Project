@@ -11,6 +11,7 @@ import { ProductsModule } from './Products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdministrationModule } from './Administration/administration.module';
+import { LoginComponent } from './core/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AdministrationModule } from './Administration/administration.module';
     ShellComponent,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

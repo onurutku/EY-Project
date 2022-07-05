@@ -6,14 +6,15 @@
     <div class="card">
       <img
         class="close-icon"
-        src="../../../../assets/icons/close.png"
+        src="assets/icons/close.png"
         alt="icon"
         (click)="closeModal()"
       />
       <img
-        src="../../../../assets/card-photos/pp.png"
+        [src]="product.image ? product.image : 'assets/card-photos/pp.png'"
         class="card-img-top"
         alt="..."
+        style="width: 100%; height: auto"
       />
       <div class="card-body">
         <h5 class="card-title">{{ product?.title }}</h5>

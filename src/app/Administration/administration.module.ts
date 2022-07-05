@@ -22,6 +22,10 @@ import { AddNewProductComponent } from './components/add-new-product/add-new-pro
         path: 'products/new',
         component: AddNewProductComponent,
       },
+      {
+        path: 'products/edit/:id',
+        component: AddNewProductComponent,
+      },
     ]),
   ],
 })
