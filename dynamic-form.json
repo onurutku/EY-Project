@@ -1,0 +1,21 @@
+{
+  "inputs": [
+    {
+      "controlName": "text",
+      "type": "text",
+      "label": "This is a text",
+      "value": "text value"
+    },
+    {
+      "controlName": "select",
+      "type": "select",
+      "label": "This is a select",
+      "selectMenuOptions": {
+        "item1": "Value1",
+        "item2": "Value2",
+        "item3": "Value3"
+      },
+      "required": true
+    }
+  ]
+}
