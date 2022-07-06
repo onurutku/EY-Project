@@ -29,11 +29,13 @@ export class AuthService {
                 password: userLoggedIn.password,
                 _token: _token,
                 _expirationDate: _expirationDate,
+                authority: data[key].authority,
               };
               const responseForInterceptor = {
                 email: response.email,
                 _token: response._token,
                 _expirationDate: response._expirationDate,
+                authority: response.authority,
               };
               newData.push(response);
               localStorage.setItem(
@@ -42,8 +44,6 @@ export class AuthService {
               );
               this.userLoggedIn.next(responseForInterceptor);
               this.autoLogout();
-            } else {
-              throw new Error();
             }
           }
         }

@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 import { LoginComponent } from './core/components/login/login.component';
+import { AdminGuard } from './core/guards/admin.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'products/list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'products',
@@ -18,9 +20,10 @@ const routes: Routes = [
       import('./Administration/administration.module').then(
         (m) => m.AdministrationModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
-  { path: '**', redirectTo: 'login' },
+  { path: 'dynamic-form', component: DynamicFormComponent },
+  { path: '**', redirectTo: 'products/list' },
 ];
 
 @NgModule({

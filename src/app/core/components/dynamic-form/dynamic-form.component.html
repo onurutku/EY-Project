@@ -1,0 +1,22 @@
+<ng-container [formGroup]="myForm">
+  {{ dynamicForm.label }}
+  <ng-container [ngSwitch]="dynamicForm.type">
+    <input
+      *ngSwitchCase="'text'"
+      type="text"
+      class="form-control"
+      [formControlName]="'dynamicField'"
+    />
+    <select
+      *ngSwitchCase="'select'"
+      class="form-control"
+      [formControlName]="'dynamicField'"
+    >
+      <option selected [ngValue]="null">Please Select</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </ng-container>
+  {{ myForm.value | json }}
+</ng-container>

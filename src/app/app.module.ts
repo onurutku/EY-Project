@@ -12,6 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AdministrationModule } from './Administration/administration.module';
 import { LoginComponent } from './core/components/login/login.component';
+import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginComponent } from './core/components/login/login.component';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    DynamicFormComponent,
   ],
   imports: [
     BrowserModule,

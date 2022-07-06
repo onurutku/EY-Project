@@ -30,22 +30,21 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    this.auth.login(userLogin).subscribe(
-      () => {
+    this.auth.login(userLogin).subscribe((userMatched) => {
+      if (userMatched.length) {
         Swal.fire({
           icon: 'success',
           title: 'Success...',
           text: 'You are successfully Logged In',
         });
         this.router.navigate(['products/list']);
-      },
-      (error) => {
+      } else {
         Swal.fire({
           icon: 'error',
           title: 'Error...',
-          text: 'Usernamme or password is incorrect',
+          text: 'Username or password is incorrect',
         });
       }
-    );
+    });
   }
 }
