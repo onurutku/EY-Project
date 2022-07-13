@@ -15,6 +15,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '12',
+      file: 'file',
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '12',
+      file: 'file',
     },
     {
       id: 3,
@@ -33,6 +35,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '15',
+      file: 'file',
     },
     {
       id: 4,
@@ -42,6 +45,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '16',
+      file: 'file',
     },
     {
       id: 5,
@@ -51,6 +55,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '17',
+      file: 'file',
     },
     {
       id: 6,
@@ -60,6 +65,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '18',
+      file: 'file',
     },
     {
       id: 7,
@@ -69,6 +75,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '30',
+      file: 'file',
     },
     {
       id: 8,
@@ -78,6 +85,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '34',
+      file: 'file',
     },
     {
       id: 9,
@@ -87,6 +95,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '25',
+      file: 'file',
     },
     {
       id: 10,
@@ -96,6 +105,7 @@ export class DataService {
       price: 1,
       image: 'image',
       quantity: '56',
+      file: 'file',
     },
   ];
   constructor() {}

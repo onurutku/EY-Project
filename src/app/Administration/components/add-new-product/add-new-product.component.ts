@@ -1,6 +1,15 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { map, Observable, takeUntil } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { BaseComponent } from 'src/app/shared/components/base-component/base.component';
@@ -19,6 +28,12 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
   editMode = false;
   editId!: string;
   validationMessage = environment.validationMessage;
+  file!: File;
+  openModal!: boolean;
+  croppedImage!: string | null;
+  imageChangedEvent!: any | null;
+
+  @ViewChild('inputFile') myInputVariable!: ElementRef;
   constructor(
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -36,6 +51,7 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       price: ['', Validators.required],
       quantity: ['', Validators.required],
       image: [''],
+      file: [''],
     });
     this.route.params
       .pipe(takeUntil(this.unsubscribe$))
@@ -55,6 +71,7 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
         price: editProduct.price,
         quantity: editProduct.quantity,
         image: editProduct.image,
+        file: editProduct.file,
       });
     });
   }
@@ -65,7 +82,9 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       price: this.newProduct.value.price,
       quantity: this.newProduct.value.quantity,
       image: this.newProduct.value.image,
+      file: this.newProduct.value.file,
     };
+
     if (!this.editMode) {
       this.productService
         .post('products', newProduct)
@@ -79,7 +98,6 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
           this.router.navigate(['/admin/products']);
         });
     } else {
-      //TODO patch operation
       this.productService
         .patch(`products/${this.editId}`, newProduct)
         .pipe(takeUntil(this.unsubscribe$))
@@ -93,16 +111,49 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
         });
     }
   }
+  //close modal without import a image
+  closeModal(event: any) {
+    this.openModal = false;
+    this.myInputVariable.nativeElement.value = '';
+  }
+  //close modal and recieve an cropped image
+  recieveCroppedImage(event: any) {
+    this.openModal = false;
+    this.croppedImage = event;
+    this.newProduct.patchValue({
+      image: this.croppedImage,
+    });
+    // need to run CD since file load runs outside of zone
+    this.cd.markForCheck();
+  }
   onFileChange(event: any) {
+    this.openModal = true;
+    this.imageChangedEvent = event;
+
+    //TODO will delete after explanation to Ervin
+    // const reader = new FileReader();
+    // if (event.target.files && event.target.files.length) {
+    //   const [file] = event.target.files;
+    //   reader.readAsDataURL(file);
+    //   reader.onload = () => {
+    //     this.newProduct.patchValue({
+    //       image: reader.result,
+    //     });
+    //     // need to run CD since file load runs outside of zone
+    //     this.cd.markForCheck();
+    //   };
+    // }
+  }
+  fileChange(event: any) {
     const reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
+    let fileList: FileList = event.target.files;
+    const file = fileList[0];
+    if (fileList.length > 0) {
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.newProduct.patchValue({
-          image: reader.result,
+          file: reader.result,
         });
-        // need to run CD since file load runs outside of zone
         this.cd.markForCheck();
       };
     }

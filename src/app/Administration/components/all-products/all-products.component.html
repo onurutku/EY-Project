@@ -3,6 +3,11 @@
   (closeModalEvent)="closeModal($event)"
   *ngIf="product"
 ></app-detail-modal>
+<app-file-modal
+  [file]="file"
+  (closeModalEvent)="closeModal($event)"
+  *ngIf="file"
+></app-file-modal>
 <div class="container">
   <div class="float-end mt-5">
     <div class="input-group mb-3">
@@ -75,6 +80,7 @@
         <tr>
           <th scope="col">Id</th>
           <th scope="col">Image</th>
+          <th scope="col">File</th>
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Price</th>
@@ -89,6 +95,13 @@
           <th scope="row">{{ product.id }}</th>
           <td>
             <img src="{{ product.image }}" style="width: 30px" alt="" />
+          </td>
+          <td (click)="openFile(product.file)">
+            <img
+              src="assets\icons\pdf.png"
+              style="width: 20px; cursor: pointer"
+              alt=""
+            />
           </td>
           <td>{{ product.title }}</td>
           <td>{{ product.description | slice: 0:110 }}...</td>

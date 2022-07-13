@@ -1,3 +1,10 @@
+<app-cropper-modal
+  [openModal]="openModal"
+  [imageChangedEvent]="imageChangedEvent"
+  (closeModalEvent)="closeModal($event)"
+  (sendCroppedImage)="recieveCroppedImage($event)"
+  *ngIf="openModal"
+></app-cropper-modal>
 <div class="d-flex justify-content-center align-items-center">
   <form [formGroup]="newProduct" (submit)="onSubmit()" style="width: 40%">
     <div class="mb-3">
@@ -84,6 +91,7 @@
     <div class="mb-3">
       <label for="picture" class="form-label">Picture</label>
       <input
+        #inputFile
         type="file"
         class="form-control"
         id="picture"
@@ -91,6 +99,19 @@
         (change)="onFileChange($event)"
       />
     </div>
+    <div class="mb-3">
+      <label for="file" class="form-label">File</label>
+      <input
+        type="file"
+        id="file"
+        class="form-control"
+        aria-describedby="file"
+        (change)="fileChange($event)"
+        placeholder="Upload file"
+        accept=".pdf,.doc,.docx"
+      />
+    </div>
+
     <button
       type="submit"
       class="btn btn-primary float-end"

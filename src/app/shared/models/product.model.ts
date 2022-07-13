@@ -5,13 +5,15 @@ export class Product {
     public image: string,
     public price: number,
     public quantity: number | string,
-    public title: string
+    public title: string,
+    public file: string
   ) {
     (this.description = description),
       (this.id = id),
       (this.image = image),
       (this.price = price),
       (this.quantity = quantity),
+      (this.file = file),
       (this.title = title);
   }
 }

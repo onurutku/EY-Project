@@ -15,6 +15,7 @@ export class AllProductsComponent extends BaseComponent implements OnInit {
   listView = true;
   searchValue!: string | number;
   product!: Product | null;
+  file!: string | null;
   constructor(private productService: ProductService) {
     super();
   }
@@ -30,6 +31,7 @@ export class AllProductsComponent extends BaseComponent implements OnInit {
   }
   closeModal($event: any) {
     this.product = null;
+    this.file = null;
   }
   deleteProduct(product: Product) {
     Swal.fire({
@@ -51,5 +53,8 @@ export class AllProductsComponent extends BaseComponent implements OnInit {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
     });
+  }
+  openFile(file: string) {
+    this.file = file;
   }
 }
