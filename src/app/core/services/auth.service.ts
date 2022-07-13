@@ -38,7 +38,7 @@ export class AuthService {
                 authority: response.authority,
               };
               newData.push(response);
-              localStorage.setItem(
+              sessionStorage.setItem(
                 'user',
                 JSON.stringify(responseForInterceptor)
               );
@@ -53,19 +53,20 @@ export class AuthService {
   }
   logout() {
     this.userLoggedIn.next(null);
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('user');
     this.router.navigate(['/login']);
   }
   autoLogin() {
-    const fromLocalStorage = JSON.parse(localStorage.getItem('user') || '{}');
+    const fromLocalStorage = JSON.parse(sessionStorage.getItem('user') || '{}');
     const userAutoLoggedIn = {
       email: fromLocalStorage.email,
       _token: fromLocalStorage._token,
       _expirationDate: +new Date() + 600000,
+      authority: fromLocalStorage.authority,
     };
     this.userLoggedIn.next(userAutoLoggedIn);
-    localStorage.removeItem('user');
-    localStorage.setItem('user', JSON.stringify(userAutoLoggedIn));
+    sessionStorage.removeItem('user');
+    sessionStorage.setItem('user', JSON.stringify(userAutoLoggedIn));
     this.autoLogout();
   }
   autoLogout() {

@@ -9,10 +9,11 @@ import { FooterComponent } from './core/components/shell/footer/footer.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsModule } from './Products/products.module';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdministrationModule } from './Administration/administration.module';
 import { LoginComponent } from './core/components/login/login.component';
 import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-form.component';
+import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-for
     AdministrationModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,28 +1,85 @@
-<ng-container [formGroup]="myForm">
-  <ng-container *ngFor="let formItem of dynamicForm">
-    {{ formItem.label }}
-    <ng-container [ngSwitch]="formItem.type">
-      <input
-        *ngSwitchCase="'text'"
-        type="text"
-        class="form-control"
-        [formControlName]="formItem.controlName"
-      />
-      <select
-        *ngSwitchCase="'select'"
-        class="form-control"
-        [formControlName]="formItem.controlName"
-      >
-        <option selected [ngValue]="null">Please Select</option>
-        <option
-          [ngValue]="menu.value"
-          *ngFor="let menu of formItem.selectMenuOptions | keyvalue"
-        >
-          {{ menu.key }}
-        </option>
-      </select>
+<div class="flex justify-content-center align-items-center">
+  <form [formGroup]="myForm" (submit)="onSubmit()">
+    <ng-container *ngFor="let formItem of dynamicForm">
+      {{ formItem.label }}
+      <ng-container [ngSwitch]="formItem.type">
+        <div class="mb-3">
+          <input
+            *ngSwitchCase="
+              ['text', 'number'].includes(formItem.type)
+                ? formItem.type
+                : !formItem.type
+            "
+            [type]="formItem.type"
+            [class]="formItem.class ? formItem.class : 'form-control'"
+            [formControlName]="formItem.controlName"
+            [value]="formItem.value"
+          />
+          <input
+            *ngSwitchCase="
+              ['checkbox'].includes(formItem.type)
+                ? formItem.type
+                : !formItem.type
+            "
+            [type]="formItem.type"
+            [class]="formItem.class ? formItem.class : 'form-control'"
+            [formControlName]="formItem.controlName"
+            [checked]="formItem['value'] ? true : null"
+            (change)="
+              [
+                myForm.controls[formItem.controlName].setValue(
+                  $event.target.checked
+                ),
+                change($event)
+              ]
+            "
+          />
+          <br />
+          <input
+            *ngSwitchCase="
+              ['radio'].includes(formItem.type) ? formItem.type : !formItem.type
+            "
+            [type]="formItem.type"
+            [class]="formItem.class ? formItem.class : 'form-control'"
+            [formControlName]="formItem.controlName"
+            [value]="formItem.value"
+            (click)="
+              myForm.controls[formItem.controlName].setValue(formItem.value)
+            "
+          />
+          <br />
+          <select
+            *ngSwitchCase="'select'"
+            [class]="formItem.class ? formItem.class : 'form-control'"
+            [formControlName]="formItem.controlName"
+          >
+            <option selected [ngValue]="null">Please Select</option>
+            <option
+              [ngValue]="menu.value"
+              *ngFor="let menu of formItem.selectMenuOptions | keyvalue"
+            >
+              {{ menu.key }}
+            </option>
+          </select>
+          <textarea
+            [formControlName]="formItem.controlName"
+            *ngSwitchCase="'textarea'"
+            cols="30"
+            rows="10"
+            [class]="formItem.class ? formItem.class : 'form-control'"
+          ></textarea>
+          <br />
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
-  {{ myForm.value | json }}
-  {{ myForm.valid }}
-</ng-container>
+    {{ myForm.value | json }}
+    {{ myForm.valid }}
+    <button
+      type="submit"
+      class="btn btn-primary btn-sm"
+      [disabled]="!myForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

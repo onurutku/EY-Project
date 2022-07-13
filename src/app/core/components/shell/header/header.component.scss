@@ -1,3 +1,15 @@
 .logout {
   cursor: pointer;
 }
+.admin {
+  background-color: red;
+  a {
+    color: #fff;
+  }
+}
+.user {
+  background-color: green;
+  a {
+    color: #fff;
+  }
+}

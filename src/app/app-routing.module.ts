@@ -4,6 +4,7 @@ import { DynamicFormComponent } from './core/components/dynamic-form/dynamic-for
 import { LoginComponent } from './core/components/login/login.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UserGuard } from './core/guards/user.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'products/list', pathMatch: 'full' },
@@ -22,7 +23,11 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard, AdminGuard],
   },
-  { path: 'dynamic-form', component: DynamicFormComponent },
+  {
+    path: 'dynamic-form',
+    component: DynamicFormComponent,
+    canActivate: [AuthGuard, UserGuard],
+  },
   { path: '**', redirectTo: 'products/list' },
 ];
 

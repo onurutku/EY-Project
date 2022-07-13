@@ -4,7 +4,7 @@
       "controlName": "text",
       "type": "text",
       "label": "This is a text",
-      "value": "text value"
+      "required": true
     },
     {
       "controlName": "select",
@@ -16,6 +16,42 @@
         "item3": "Value3"
       },
       "required": true
+    },
+    {
+      "controlName": "checkbox",
+      "type": "checkbox",
+      "label": "This is a checkbox",
+      "required": true,
+      "class": "form-check-input mt-0"
+    },
+    {
+      "controlName": "checkbox2",
+      "type": "checkbox",
+      "label": "This is a checkbox 2",
+      "required": true,
+      "class": "form-check-input mt-0"
+    },
+    {
+      "controlName": "radio",
+      "type": "radio",
+      "label": "This is a radio",
+      "required": true,
+      "class": "form-check-input mt-0",
+      "value": "value1"
+    },
+    {
+      "controlName": "number",
+      "type": "number",
+      "label": "This is a number",
+      "required": true
+    },
+    {
+      "controlName": "textarea",
+      "type": "textarea",
+      "label": "This is a textarea",
+      "required": true,
+      "rows": "10",
+      "cols": "30"
     }
   ]
 }

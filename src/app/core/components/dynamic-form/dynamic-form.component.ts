@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicForm } from 'src/app/shared/models/dynamic-form.model';
 import Inputs from 'dynamic-form.json';
 @Component({
@@ -20,7 +15,6 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.myForm = this.fb.group({});
-    console.log(Object.assign(Inputs.inputs));
 
     this.dynamicForm.forEach((formItem) => {
       this.myForm.addControl(
@@ -31,5 +25,18 @@ export class DynamicFormComponent implements OnInit {
         )
       );
     });
+  }
+  onSubmit() {
+    console.log(this.myForm.value);
+  }
+  change(event: any) {
+    console.log(event.target.value);
+
+    !event.target.checked
+      ? this.myForm.get('checkbox')?.setErrors({ incorrect: true })
+      : null;
+  }
+  hello(event: any) {
+    console.log(event.target.value);
   }
 }
