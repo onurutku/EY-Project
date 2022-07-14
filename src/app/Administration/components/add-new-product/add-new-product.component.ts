@@ -1,16 +1,12 @@
 import {
-  ChangeDetectorRef,
   Component,
   ElementRef,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { map, Observable, takeUntil } from 'rxjs';
+import {  Observable, takeUntil } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product.service';
 import { BaseComponent } from 'src/app/shared/components/base-component/base.component';
 import { Product } from 'src/app/shared/models/product.model';
@@ -36,7 +32,6 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
   @ViewChild('inputFile') myInputVariable!: ElementRef;
   constructor(
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef,
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute
@@ -50,6 +45,8 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       description: ['', Validators.required],
       price: ['', Validators.required],
       quantity: ['', Validators.required],
+      lat:['',Validators.required],
+      lng:['',Validators.required],
       image: [''],
       file: [''],
     });
@@ -70,6 +67,8 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
         description: editProduct.description,
         price: editProduct.price,
         quantity: editProduct.quantity,
+        lat:editProduct.lat,
+        lng:editProduct.lng,
         image: editProduct.image,
         file: editProduct.file,
       });
@@ -81,6 +80,8 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       description: this.newProduct.value.description,
       price: this.newProduct.value.price,
       quantity: this.newProduct.value.quantity,
+      lat:this.newProduct.value.lat.toString(),
+      lng:this.newProduct.value.lng.toString(),
       image: this.newProduct.value.image,
       file: this.newProduct.value.file,
     };
@@ -124,7 +125,6 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
       image: this.croppedImage,
     });
     // need to run CD since file load runs outside of zone
-    this.cd.markForCheck();
   }
   onFileChange(event: any) {
     this.openModal = true;
@@ -154,7 +154,6 @@ export class AddNewProductComponent extends BaseComponent implements OnInit {
         this.newProduct.patchValue({
           file: reader.result,
         });
-        this.cd.markForCheck();
       };
     }
   }

@@ -89,6 +89,50 @@
       {{ validationMessage }}
     </div>
     <div class="mb-3">
+      <label for="quantity" class="form-label">Lat</label>
+      <input
+        type="number"
+        min="0"
+        step="0.1"
+        class="form-control"
+        id="lat"
+        aria-describedby="lat"
+        formControlName="lat"
+      />
+    </div>
+    <div
+      *ngIf="
+        newProduct.get('lat')?.touched &&
+        !newProduct.get('lat')?.valid
+      "
+      id="title"
+      class="form-text"
+    >
+      {{ validationMessage }}
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Long</label>
+      <input
+        type="number"
+        min="0"
+        step="0.1"
+        class="form-control"
+        id="lng"
+        aria-describedby="lng"
+        formControlName="lng"
+      />
+    </div>
+    <div
+      *ngIf="
+        newProduct.get('lng')?.touched &&
+        !newProduct.get('lng')?.valid
+      "
+      id="title"
+      class="form-text"
+    >
+      {{ validationMessage }}
+    </div>
+    <div class="mb-3">
       <label for="picture" class="form-label">Picture</label>
       <input
         #inputFile

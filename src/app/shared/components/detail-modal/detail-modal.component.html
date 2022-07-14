@@ -25,6 +25,19 @@
         <br />
         <br />
         <h5 class="card-title">{{ product?.price | currency }}</h5>
+        <hr />
+        <div>
+          <iframe
+            [src]='trustSrc()'
+            width="400"
+            height="300"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="map"
+          ></iframe>
+        </div>
       </div>
     </div>
   </div>

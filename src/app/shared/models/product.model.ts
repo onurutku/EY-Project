@@ -6,7 +6,9 @@ export class Product {
     public price: number,
     public quantity: number | string,
     public title: string,
-    public file: string
+    public file: string,
+     public lat: string,
+     public lng: string
   ) {
     (this.description = description),
       (this.id = id),
@@ -14,6 +16,8 @@ export class Product {
       (this.price = price),
       (this.quantity = quantity),
       (this.file = file),
+      (this.lat = lat),
+      (this.lng = lng),
       (this.title = title);
   }
 }

@@ -16,6 +16,8 @@ export class DataService {
       image: 'image',
       quantity: '12',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 2,
@@ -26,6 +28,8 @@ export class DataService {
       image: 'image',
       quantity: '12',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 3,
@@ -36,6 +40,8 @@ export class DataService {
       image: 'image',
       quantity: '15',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 4,
@@ -46,6 +52,8 @@ export class DataService {
       image: 'image',
       quantity: '16',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 5,
@@ -56,6 +64,8 @@ export class DataService {
       image: 'image',
       quantity: '17',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 6,
@@ -66,6 +76,8 @@ export class DataService {
       image: 'image',
       quantity: '18',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 7,
@@ -76,6 +88,8 @@ export class DataService {
       image: 'image',
       quantity: '30',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 8,
@@ -86,6 +100,8 @@ export class DataService {
       image: 'image',
       quantity: '34',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 9,
@@ -96,6 +112,8 @@ export class DataService {
       image: 'image',
       quantity: '25',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
     {
       id: 10,
@@ -106,6 +124,8 @@ export class DataService {
       image: 'image',
       quantity: '56',
       file: 'file',
+      lat:'22',
+      lng:'22',
     },
   ];
   constructor() {}
